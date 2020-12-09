@@ -22,7 +22,7 @@ workflows:
   test:
     jobs:
       - run-test:
-          context: 'xoxb-1391132911282-1567473844292-fPk7BKy9NixBKk5xZPAyinYh'
+          context: slack-secrets
         
 
       
