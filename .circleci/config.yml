@@ -1,9 +1,40 @@
 version: 2.1
+
+orbs: 
+  node: circleci/node@4.1.0
+  slack: circleci/slack@4.1.3
+
 jobs:
-  build:
-   docker:
-    - image: cimg/node:12.17.0
-  
-  steps:
-   - checkout
-   - run: npm test
+  slack-message:
+    executor:
+      name: node/default
+    steps:
+      - slack/notify:
+          channel: 'testing'
+          event: always
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "plain_text",
+                      "text": "*This is a text notification*",
+                      "emoji": true
+                    }
+                  ]
+                }
+              ]
+            }
+          
+
+
+workflows:
+  test:
+    jobs:
+      - node/test
+      - slack-message:
+          context: xoxb-1391132911282-1567473844292-7wGm5fPcgBdj329752BfCWaE
+
+      
