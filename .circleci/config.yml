@@ -12,28 +12,18 @@ jobs:
       - slack/notify:
           channel: 'testing'
           event: always
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "*This is a text notification*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
-          
+          template: basic_fail_1
+  run-test:
+    executor:
+      name: node/default
+    steps:
+      - node/test
 
 
 workflows:
   test:
     jobs:
-      - node/test
+      - run-test
       - slack-message:
           context: xoxb-1391132911282-1567473844292-7wGm5fPcgBdj329752BfCWaE
 
