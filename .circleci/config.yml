@@ -9,20 +9,20 @@ jobs:
     executor:
       name: node/default
     steps:
-      - checkout
-      - run: npm i
-      - run: npm test
-       - slack/notify:
-          channel: 'testing'
-          event: always
-          template: basic_fail_1
+      - run: echo "Hello"
+      - slack/notify:
+            channel: 'testing'
+            event: always
+            template: basic_fail_1
+            #webhook: 'https://hooks.slack.com/services/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'
 
 
 
 workflows:
   test:
     jobs:
-      - run-test
-        context: xoxb-1391132911282-1567473844292-7wGm5fPcgBdj329752BfCWaE
+      - run-test:
+          context: 'xoxb-1391132911282-1567473844292-fPk7BKy9NixBKk5xZPAyinYh'
+        
 
       
