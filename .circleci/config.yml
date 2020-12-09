@@ -4,7 +4,6 @@ orbs:
   node: circleci/node@4.1.0
 
 workflow:
-  test_my_app:
-    jobs:
-      - node/test
+  jobs:
+    - node/test
       
